@@ -17,3 +17,12 @@ a parent class for sqlite3
 			
 	  	def get_this_one(self, idx)
 			return super().select(None, None, idx, True)
+
+the init function takes 2 parameters (table_name, database_name)
+
+the add_column function can take 3 parameters (name, type, primary_key)
+
+create_database_table is kinda self explanatory
+
+select function can take 4 parameters (cols, table, where, fetchone)
+if all are None (default) it takes all columns in this table and fetches all and returns the fetched list
