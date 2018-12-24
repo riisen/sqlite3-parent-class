@@ -18,14 +18,14 @@ a parent class for sqlite3
 	  	def get_this_one(self, idx)
 			return super().select(None, None, idx, True)
 
-###### __init__(table, db='Database.db')
+##### __init__(table, db='Database.db')
 table : [string]
 	the name of the table your class will represent
 	
 db : [string]
 	the name of the database file sqlite3 will use
 
-###### add_column(name, kind, primary_key=None)
+##### add_column(name, kind, primary_key=None)
 name : [string]
 	column name in the table
 	
@@ -35,11 +35,11 @@ kind : [string]
 primary_key : [integer]
 	if not None it is primary key in sqlite3 db
 
-###### create_database_table()
+##### create_database_table()
 is kinda self explanatory but runs a CREATE TABLE IF NOT EXISTS
 with the table name and columns you add to youre class
 
-###### select(cols=None, table=None, where=None, fetchone=None)
+##### select(cols=None, table=None, where=None, fetchone=None)
 cols : [string]
 	which columns you wanna select, if None use every one
 
