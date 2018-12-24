@@ -50,4 +50,4 @@ where : [string]
 	the column value of the primary_key in db table
 	
 fetchone : [integer]
-	if None fetcheall else fetchone
+	if None fetchall else fetchone
