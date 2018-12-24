@@ -71,10 +71,10 @@ class Databas():
     """This is a Parent-class
     for classes that needs sqlite3
     the constructor takes 1 optional argument named db.
-    that defaults to 'Wiggs.db' if not specified
+    that defaults to 'Database.db' if not specified
     """
 
-    def __init__(self, table, db="Wiggs.db"):
+    def __init__(self, table, db="Database.db"):
         """Constructor function
 
         Parameters:
@@ -243,42 +243,11 @@ class Databas():
         val = val[:-2]+');'
         return 'INSERT INTO '+self.Table+'('+self.get_columns()+') VALUES'+val
 
-    def it_exists(self, table, idxname, idx):
-        """Check if some id exists
-
-        Parameters:
-        -----------
-        table : str
-            The name of the sql table
-        idxname : str
-            The column name for the ID number
-        idx : int
-            The ID number
-
-        Returns:
-        ----------
-        Bool
-            True if it exists, False if it doesn't
-        """
-
-        if not self._connect.esc (table) or not is_sql_valid(idxname):
-            return False
-        query = "SELECT * FROM "+table+" WHERE "+idxname+" = ?"
-        self.open_database()
-        self._cursor.execute(query, (idx,))
-        res = self._cursor.fetchall()
-        self.close_database()
-        if len(res) != 0:
-            return True
-        return False
-
-    def remove_by_id(self, table, idx):
+    def remove_by_id(self, idx):
         """Remove an item from the database
 
         Parameters:
         -----------
-        table : str
-            The name of the sql table
         idx : int
             The ID number
 
@@ -286,7 +255,7 @@ class Databas():
         ----------
         None
         """
-        query = "DELETE FROM "+table+" WHERE idx = ?"
+        query = "DELETE FROM "+self.Table+" WHERE "+self.get_primary_key()+" = ?"
         self.query_this(query (idx,))
 
     def open_database(self):
