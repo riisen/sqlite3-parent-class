@@ -312,4 +312,4 @@ class Databas():
         self.query_this(query)
 
     def __str__(self):
-        return 'Detta är en databas klass skriven av Robin "riisen" Riis :)'
+        return 'this is a database class, dont print it :D'
