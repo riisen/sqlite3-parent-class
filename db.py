@@ -53,7 +53,27 @@ def random_idx():
     return uuid.uuid4().int & (1<<32)-1
 
 class Columns():
+    """This is a column in your db"""
+
     def __init__(self, name, kind, primary_key=None):
+        """Constructor function
+
+        Parameters:
+        -----------
+        name : str
+            the name of the column
+
+        kind : str
+            what kind of column (INTEGER, REAL, TEXT, BLOB)
+
+        primary_key : int
+            if not None it is primary key!
+
+        Returns:
+        -----------
+        None
+        """
+
         self.Name = name
         self.Kind = kind
         self.Primary_key = primary_key
@@ -143,6 +163,7 @@ class Databas():
         str
             of all columns in table separated by ', '
         """
+
         ret = ''
         for col in self.Columns:
             ret += col.Name+', '
@@ -170,6 +191,7 @@ class Databas():
         list
             of results from db table
         """
+
         query = 'SELECT '
         values = []
         if cols == None:
@@ -209,6 +231,7 @@ class Databas():
         -----------
         None or list of result
         """
+
         self.open_database()
         if v:
             self._cursor.execute(q, v)
@@ -255,6 +278,7 @@ class Databas():
         ----------
         None
         """
+
         query = "DELETE FROM "+self.Table+" WHERE "+self.get_primary_key()+" = ?"
         self.query_this(query (idx,))
 
@@ -269,6 +293,7 @@ class Databas():
         -----------
         None or Error
         """
+
         try:
             self._connect = sqlite3.connect(self.database)
             self._cursor = self._connect.cursor()
@@ -288,6 +313,7 @@ class Databas():
         -----------
         None
         """
+
         if self._connect:
             self._connect.commit()
             self._cursor.close()
