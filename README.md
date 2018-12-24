@@ -15,8 +15,16 @@ a parent class for sqlite3
 		def get_all(self):
 			return super().select()
 			
-	  	def get_this_one(self, idx)
+	  	def get_this_one(self, idx):
 			return super().select(None, None, idx, True)
+		
+		def create_new(self, license_plate, brand, model, year):
+			super().query_this(super().insert_into_query(),(
+				license_plate,
+				brand,
+				model,
+				year)
+			)
 
 ##### __init__(table, db='Database.db')
 table : [string]
@@ -51,3 +59,9 @@ where : [string]
 	
 fetchone : [integer]
 	if None fetchall else fetchone
+	
+##### query_this(q, v)
+just like mycursor.execute(q, v)
+
+##### insert_into_query()
+will return "INSERT INTO cars(license_plate, brand, model, year) VALUES(?, ?, ?, ?)" for this example
