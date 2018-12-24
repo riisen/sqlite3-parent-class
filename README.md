@@ -12,7 +12,7 @@ a parent class for sqlite3
 			super().add_column('year', 'INTEGER')
 			self.create_database_table()
     
-		def get_all():
+		def get_all(self):
 			return super().select()
 			
 	  	def get_this_one(self, idx)
