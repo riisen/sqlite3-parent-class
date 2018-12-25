@@ -60,8 +60,13 @@ where : [string]
 fetchone : [integer]
 	if None fetchall else fetchone
 	
-##### query_this(q, v)
-just like mycursor.execute(q, v)
+##### query_this(q, v, ret)
+q : [string]
+	sql query (for example: "UPDATE bilar SET year = 1960 WHERE license_plate = ?")
+v : [tuple]
+	value's of all the question marks in q
+ret : [bool]
+	should it fetch results and return them
 
 ##### insert_into_query()
 will return "INSERT INTO cars(license_plate, brand, model, year) VALUES(?, ?, ?, ?)" for this example
